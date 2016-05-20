@@ -1,3 +1,12 @@
+###Note
+This project exists solely to allow this JAR to be published to Bintray; there have been NO code changes. 
+
+If you are interested in using [yeokm1's converter](https://github.com/yeokm1/docs-to-pdf-converter) but want to have proper dependency-management, head over to my [Bintray](https://bintray.com/themillhousegroup/maven/docs-to-pdf-converter/view) where you will find the correct incantation to add to your `pom.xml`.
+
+____
+ 
+
+
 Docs to PDF Converter
 =====================
 
