@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -27,7 +28,7 @@ public class PptxToPDFConverter extends Converter{
 	}
 
 
-	private XSLFSlide[] slides;
+	private List<XSLFSlide> slides;
 	
 
 	@Override
@@ -89,16 +90,16 @@ public class PptxToPDFConverter extends Converter{
 	}
 	
 	protected int getNumSlides(){
-		return slides.length;
+		return slides.size();
 	}
 	
 	
 	protected void drawOntoThisGraphic(int index, Graphics2D graphics){
-		slides[index].draw(graphics);
+		slides.get(index).draw(graphics);
 	}
 	
 	protected Color getSlideBGColor(int index){
-		return slides[index].getBackground().getFillColor();
+		return slides.get(index).getBackground().getFillColor();
 	}
 	
 	

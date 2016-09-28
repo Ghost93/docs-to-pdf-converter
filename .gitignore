@@ -5,6 +5,10 @@ target
 *.war
 *.ear
 
+#IDE files
+.idea
+*.iml
+
 /.metadata
 
 /docs-to-pdf-converter/bin
