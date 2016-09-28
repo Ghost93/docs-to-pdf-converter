@@ -32,8 +32,9 @@
 	  </repository>
 	</distributionManagement>
 	<properties>
-			<poi.version>3.15</poi.version>
-			<xdocreport.version>1.0.6</xdocreport.version>
+		<docx4j.version>3.2.2</docx4j.version>
+		<poi.version>3.15</poi.version>
+		<xdocreport.version>1.0.6</xdocreport.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,7 +45,7 @@
 		<dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>docx4j</artifactId>
-			<version>3.3.1</version>
+			<version>${docx4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
