@@ -30,6 +30,7 @@ import org.apache.poi.hwpf.usermodel.Section;
 import org.apache.poi.hwpf.usermodel.Table;
 import org.apache.poi.hwpf.usermodel.TableCell;
 import org.apache.poi.hwpf.usermodel.TableRow;
+import org.apache.xmlgraphics.image.loader.ImageSize;
 import org.docx4j.UnitsOfMeasurement;
 import org.docx4j.XmlUtils;
 import org.docx4j.dml.wordprocessingDrawing.Inline;
@@ -212,14 +213,13 @@ public class Doc {
           BinaryPartAbstractImage imagePart = BinaryPartAbstractImage
               .createImagePart(wordMLPackage, picture.getContent());
 
+          final ImageSize imageSize = imagePart.getImageInfo().getSize();
           long cx = UnitsOfMeasurement
-              .twipToEMU(Math.round((double) imagePart
-                  .getImageInfo().getSize().getWidthMpt()
+              .twipToEMU(Math.round((double) imageSize.getWidthMpt()
                   * ((double) picture
                   .getHorizontalScalingFactor() * 0.00001d))) * 2L;
           long cy = UnitsOfMeasurement
-              .twipToEMU(Math.round((double) imagePart
-                  .getImageInfo().getSize().getHeightMpt()
+              .twipToEMU(Math.round((double) imageSize.getHeightMpt()
                   * ((double) picture
                   .getVerticalScalingFactor() * 0.00001d))) * 2L;
 
@@ -264,8 +264,8 @@ public class Doc {
         if (rPr != null) {
           wmlRun.setRPr(rPr);
         }
-        wmlRun.getRunContent().add(t);
-        wmlP.getParagraphContent().add(wmlRun);
+        wmlRun.getContent().add(t);
+        wmlP.getContent().add(wmlRun);
       }
     }
 
@@ -295,9 +295,9 @@ public class Doc {
     t.setValue(message);
 
     org.docx4j.wml.R wmlRun = factory.createR();
-    wmlRun.getRunContent().add(t);
+    wmlRun.getContent().add(t);
 
-    wmlP.getParagraphContent().add(wmlRun);
+    wmlP.getContent().add(wmlRun);
 
   }
 
@@ -365,13 +365,13 @@ public class Doc {
       TableRow tr = t.getRow(i);
 
       org.docx4j.wml.Tr trOut = factory.createTr();
-      tbl.getEGContentRowContent().add(trOut);
+      tbl.getContent().add(trOut);
 
       for (int j = 0; j < tr.numCells(); j++) {
         TableCell tc = tr.getCell(j);
 
         org.docx4j.wml.Tc tcOut = factory.createTc();
-        trOut.getEGContentCellContent().add(tcOut);
+        trOut.getContent().add(tcOut);
 
         // System.out.println("CELL[" + i + "][" + j + "]=" +
         // tc.text());
@@ -386,7 +386,7 @@ public class Doc {
           org.docx4j.wml.P paraToAdd = handleP(wordMLPackage, doc, p,
               stylesheet, documentPart, factory);
 
-          tcOut.getEGBlockLevelElts().add(paraToAdd);
+          tcOut.getContent().add(paraToAdd);
 
           log.debug("Added p to tc");
         }
