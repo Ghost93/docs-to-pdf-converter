@@ -34,7 +34,7 @@ public abstract class Converter {
   }
 
   protected void loading() {
-    sendToOutputOrNot(String.format(LOADING_FORMAT));
+    sendToOutputOrNot(LOADING_FORMAT);
     startTime();
   }
 

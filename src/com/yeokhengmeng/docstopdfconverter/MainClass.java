@@ -142,15 +142,10 @@ public class MainClass {
     // Remove the extension.
     int extensionIndex = filename.lastIndexOf(".");
 
-    String removedExtension;
-    if (extensionIndex == -1) {
-      removedExtension = filename;
-    } else {
-      removedExtension = filename.substring(0, extensionIndex);
-    }
-    String addPDFExtension = removedExtension + ".pdf";
+    String removedExtension =
+        -1 == extensionIndex ? filename : filename.substring(0, extensionIndex);
 
-    return addPDFExtension;
+    return String.format("%s.pdf", removedExtension);
   }
 
   protected static InputStream getInFileStream(String inputFilePath) throws FileNotFoundException {
